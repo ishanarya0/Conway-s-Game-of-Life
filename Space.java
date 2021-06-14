@@ -11,7 +11,7 @@ public class Space {
         space = new char [ROWS][COLS];
     }
 
-    public static void fillEmptyState(char[][] space){
+    public void fillEmptyState(){
         for (int i = 0; i < ROWS; i++)
         {
             for(int j=0; j<COLS; j++){
@@ -20,7 +20,7 @@ public class Space {
         }
     }
 
-    public static void inputState(){
+    public void inputState(){
         int sizeOfInput = 0, inputCount = 1;
         Scanner s = new Scanner(System.in);
 
@@ -45,10 +45,11 @@ public class Space {
         s.close();
     }
 
-    public static void printState(){
+    public void printState(){
         for(int x=0; x < ROWS; x++){
+            System.out.println();
             for(int y=0; y < COLS; y++){
-                
+                System.out.print(space[x][y]);
             }
         }
     }
