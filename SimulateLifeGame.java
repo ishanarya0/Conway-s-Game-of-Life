@@ -1,13 +1,22 @@
 public class SimulateLifeGame {
     int _ROWS, _COLS;
     Space spaceObj;
+    boolean isGameActive;
 
     SimulateLifeGame(Space _spaceObj){
-        spaceObj = _spaceObj;
+        spaceObj = _spaceObj;  
+        isGameActive = false;
         _ROWS = spaceObj.getROWS();
         _COLS = spaceObj.getCOLS();
     }
 
+    public boolean getGameState(){
+        return isGameActive;
+    }
+
+    public void setGameState(boolean _gameState){
+        isGameActive = _gameState;
+    }
     private boolean isSafe(int x, int y){
         if(x < 0 || y < 0 || x >= _ROWS || y >= _COLS ) return false;
         else return true;
@@ -30,7 +39,7 @@ public class SimulateLifeGame {
         
     }
 
-    public void play(){
+    public void play(int generation){
 
 
         for(int x = 0; x < _ROWS; x++){
@@ -39,14 +48,17 @@ public class SimulateLifeGame {
 
                 if(spaceObj.space[x][y] == '*'){
                     if(countLive < 2) spaceObj.space[x][y] = '.';
-                    else if(countLive == 2 || countLive == 3) continue;
+                    else if(countLive == 2 || countLive == 3) isGameActive = true;
                     else if (countLive > 3) spaceObj.space[x][y] = '.';
                 } else {
-                    if(countLive == 3) spaceObj.space[x][y] = '*';
+                    if(countLive == 3) {
+                        spaceObj.space[x][y] = '*';
+                        isGameActive = true;
+                    }
                 }
             }
         }
-        System.out.println("\n\n\n");
+        System.out.println("\nGeneration : "+generation);
         spaceObj.printState();
 
     }
