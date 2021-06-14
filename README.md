@@ -9,10 +9,20 @@ The Game of Life, also known simply as Life, is a cellular automaton devised by 
 **3. Any live cell with more than three live neighbours dies, as if by overpopulation.**\
 **4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.**\
 
-To build
---------
-    mvn clean package
+## Install and setup Java
+Install [Java](https://www.java.com/en/download/) .
 
-To run
-------
-    java -cp target/helloworld-1.0.jar com.coveros.demo.helloworld.HelloWorld
+Check for the installation with the following command
+--------
+    java -version
+
+## Run
+The main finction is in "Main.java" file.
+
+Use the following commands to compile and execute
+
+--------
+    javac Main.java
+
+--------
+    java Main
