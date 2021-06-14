@@ -19,7 +19,7 @@ Check for the installation with the following command
 ## Run
 The main finction is in "Main.java" file.
 
-Use the following commands to compile and execute
+Use the following commands to compile and execute.
 
     javac Main.java
 --------
