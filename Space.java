@@ -11,7 +11,7 @@ public class Space {
         space = new char [ROWS][COLS];
     }
 
-    public int getROW(){
+    public int getROWS(){
         return ROWS;
     }
 
