@@ -11,6 +11,14 @@ public class Space {
         space = new char [ROWS][COLS];
     }
 
+    public int getROW(){
+        return ROWS;
+    }
+
+    public int getCOLS(){
+        return COLS;
+    }
+
     public void fillEmptyState(){
         for (int i = 0; i < ROWS; i++)
         {

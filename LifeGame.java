@@ -7,5 +7,8 @@ class LifeGame {
 
         System.out.println("***********INITIAL STATE***********");
         spaceObj.printState();
+
+        SimulateLifeGame gameObj = new SimulateLifeGame(spaceObj);
+        gameObj.play();
     }
 };
