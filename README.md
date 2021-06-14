@@ -22,5 +22,5 @@ The main finction is in "Main.java" file.
 Use the following commands to compile and execute
 
     javac Main.java
-
+--------
     java Main
