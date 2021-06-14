@@ -27,14 +27,14 @@ public class SimulateLifeGame {
     }
 
     //Counts the number of live neighbours in the board area
-    private int findLiveNeighbours(int x, int y){
+    public int findLiveNeighbours(int x, int y, char[][] space){
         int count = 0;
         int[] yMoves = {-1,0,1,1,1,0,-1,-1};
         int[] xMoves = {-1,-1,-1,0,1,1,1,0};
 
         for(int move = 0; move < 8; move++){
             if(isSafe(x+xMoves[move], y+yMoves[move]) ){
-                if(spaceObj.space[x+xMoves[move]][y+yMoves[move]] == '*'){
+                if(space[x+xMoves[move]][y+yMoves[move]] == '*'){
                     count++;
                 }
             }
@@ -44,39 +44,21 @@ public class SimulateLifeGame {
         
     }
 
-    //TO DO - A function to compare the current state wit the previoud state
-   /*
-    private boolean isStateSame(){
-        System.out.println("Yo\n\n");
-        System.out.println("Prev\n\n");
-        prevspaceObj.printState();
-
-        System.out.println("\n\nCurrent\n\n");
-        spaceObj.printState();
-        System.out.println("\nEnd\n\n");
-
-        for(int x = 0; x < _ROWS; x++){
-            for(int y = 0; y < _COLS; y++){
-                if(prevspaceObj.space[x][y] == spaceObj.space[x][y]) continue;
-                else {
-                    prevspaceObj = spaceObj;
-
-
-                    return false;
-                } 
-            }
-        }
-        return true;
-    }
-    */
-
     //Function that simulates the game - updates the board
     public void play(int generation){
-        char[][] tempSpace = spaceObj.space;
+        //making a copy os space to work upon
+        char[][] tempSpace =new char[spaceObj.space.length][];
+        for (int i = 0; i < tempSpace.length; ++i) {
+            tempSpace[i] = new char[spaceObj.space[i].length];
+           for (int j = 0; j < tempSpace[i].length; ++j) {
+                tempSpace[i][j] = spaceObj.space[i][j];
+           }
+        }
 
+        //applying the rules
         for(int x = 0; x < _ROWS; x++){
             for(int y = 0; y < _COLS; y++){
-                int countLive = findLiveNeighbours(x,y);
+                int countLive = findLiveNeighbours(x,y, spaceObj.space);
 
                 if(tempSpace[x][y] == '*'){
                     if(countLive < 2) tempSpace[x][y] = '.';
@@ -93,11 +75,21 @@ public class SimulateLifeGame {
 
         //Prints the Current generation with the state of the board
         System.out.println("\nGeneration : "+generation);
+        spaceObj.space = tempSpace;
         spaceObj.printState();
 
         //if(isStateSame()) isGameActive = false;
     }
-}
+/*
+    @Test
+    public void testfindLiveNeighbours(){
+        char[][] testSpace = {{'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','*','*','*','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}, {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}};
+
+        assertEquals(3, findLiveNeighbours(2, 4, testSpace));
+
+    }
+*/
+};
 
 /*
 RULES: 

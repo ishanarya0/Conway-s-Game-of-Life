@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-class LifeGame {
+class Main {
 
     public static void main(String[] args) throws InterruptedException {
         //Detones the generation we are on
@@ -26,6 +26,7 @@ class LifeGame {
         //The initial state after input
         System.out.println("***********INITIAL STATE***********");
         spaceObj.printState();
+        System.out.println("");
 
         //Defining the game object
         SimulateLifeGame gameObj = new SimulateLifeGame(spaceObj);
