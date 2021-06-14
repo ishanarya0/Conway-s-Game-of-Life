@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Space {
     static int ROWS;
     static int COLS;
-    static char[][] space;
+    char[][] space;
 
     Space(int _ROWS, int _COLS){
         ROWS = _ROWS;
